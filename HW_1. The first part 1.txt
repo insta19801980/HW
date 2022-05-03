@@ -1,0 +1,2 @@
+$ tail -f app1.txt | grep --line-buffered London >> 2.txt
+$ tail -f app1.txt | grep --line-buffered London |>&1 tee 2.txt
