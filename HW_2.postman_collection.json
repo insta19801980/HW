@@ -1,0 +1,142 @@
+{
+	"info": {
+		"_postman_id": "03ff405a-89bf-4b7e-925a-01be05dedd8b",
+		"name": "HW_2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "login",
+							"value": "Alex",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "2000",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://162.55.220.72:5007//login",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5007",
+					"path": [
+						"",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_info_3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"let age_check = jsonData.age\r",
+							"let name_check = jsonData.name\r",
+							"let salary_check = jsonData.salary\r",
+							"\r",
+							"console.log (age_check)\r",
+							"console.log (name_check)\r",
+							"console.log (salary_check)\r",
+							"\r",
+							"pm.test(\"age_check\", function () {\r",
+							"pm.expect(age_check).to.eql(\"40\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"name_check\", function () {\r",
+							"pm.expect(name_check).to.eql(\"Sham\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"salary_check\", function () {\r",
+							"pm.expect(salary_check).to.eql(2000);\r",
+							"});\r",
+							"\r",
+							"// let req = JSON.parse(request.data)\r",
+							"// // let req_age = req.age\r",
+							"// console.log (\"req.age\" = req.age)\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Sham",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "40",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "2000",
+							"type": "text"
+						},
+						{
+							"key": "auth_token",
+							"value": "/s34lfgbj/Alex/jjd909/4907kjkWpqc559123235878evny",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://162.55.220.72:5007/user_info_3",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5007",
+					"path": [
+						"user_info_3"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Aleks",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
