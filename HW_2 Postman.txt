@@ -9,6 +9,9 @@ pm.test("Status code is 200", function () {
 });
 
 3. 	//Проверить, что в body приходит правильный string.
+pm.test("Body matches string", function () {
+    pm.expect(pm.response.text()).to.include("This is the first responce from server!");
+});
 
 http://162.55.220.72:5005/user_info_3
 1. Отправить запрос.		// 
@@ -86,20 +89,20 @@ pm.expect(jsonData.salary).to.eql(+req.salary);
 console.log(jsonData.family)
 
 9. Проверить, что у параметра dog есть параметры name.
-pm.test("Check parametr Dog.Name "), function () {
-pm.expect(jsonData.family.pets.dog).to.haveOwnProperty('name')}
+pm.test("Check parametr Dog.Name ", function () {
+pm.expect(jsonData.family.pets.dog).to.haveOwnProperty("name")})
 
 10. Проверить, что у параметра dog есть параметры age.
-pm.test("Check parametr Dog.age "), function () {
-pm.expect(jsonData.family.pets.dog).to.haveOwnProperty('age')}
+pm.test("Check parametr Dog.age ", function () {
+pm.expect(jsonData.family.pets.dog).to.haveOwnProperty('age')})
 
 11. Проверить, что параметр name имеет значение Luky.
-pm.test("Check parametr Dog.Name.Luki "), function () {
-pm.expect(jsonData.family.pets.dog.name).to.haveOwnProperty('Luki')}
+pm.test("Check parametr Dog.Name.Luky ", function () {
+pm.expect(jsonData.family.pets.dog.name).to.deep.include("Luky")})
 
 12. Проверить, что параметр age имеет значение 4.
-pm.test("Check parametr Dog.age.4 "), function () {
-pm.expect(jsonData.family.pets.dog.age).to.haveOwnProperty('4')}
+pm.test("Check parametr Dog.age.4 ", function () {
+pm.expect(jsonData.family.pets.dog.age).to.eql(+'4')})
 
 http://162.55.220.72:5005/object_info_4
 1. Отправить запрос.

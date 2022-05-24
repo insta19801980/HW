@@ -13,8 +13,17 @@
 					"listen": "test",
 					"script": {
 						"exec": [
+							"// 1. Отправить запрос.\r",
+							"// 2. Статус код 200\r",
+							"\r",
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//3. Проверить, что в body приходит правильный string.\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"This is the first responce from server!\");\r",
 							"});\r",
 							"\r",
 							""
@@ -34,7 +43,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://162.55.220.72:5005/first",
+					"raw": "http://162.55.220.72:5005/first?name=Sham&age=41",
 					"protocol": "http",
 					"host": [
 						"162",
@@ -45,6 +54,21 @@
 					"port": "5005",
 					"path": [
 						"first"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Sham"
+						},
+						{
+							"key": "age",
+							"value": "41"
+						},
+						{
+							"key": "zena",
+							"value": "zmeya",
+							"disabled": true
+						}
 					]
 				}
 			},
@@ -184,21 +208,17 @@
 							"let family = jsonData.family\r",
 							"console.log(jsonData.family)\r",
 							"\r",
-							"pm.test(\"Check parametr Dog.Name \"), function () {\r",
-							"pm.expect(jsonData.family.pets.dog).to.haveOwnProperty('name')}\r",
+							"pm.test(\"Check parametr Dog.Name \", function () {\r",
+							"pm.expect(jsonData.family.pets.dog).to.haveOwnProperty(\"name\")})\r",
 							"\r",
-							"pm.test(\"Check parametr Dog.age \"), function () {\r",
-							"pm.expect(jsonData.family.pets.dog).to.haveOwnProperty('age')}\r",
+							"pm.test(\"Check parametr Dog.age \", function () {\r",
+							"pm.expect(jsonData.family.pets.dog).to.haveOwnProperty('age')})\r",
 							"\r",
-							"pm.test(\"Check parametr Dog.Name.Luki \"), function () {\r",
-							"pm.expect(jsonData.family.pets.dog.name).to.haveOwnProperty('Luki')}\r",
+							"pm.test(\"Check parametr Dog.Name.Luky \", function () {\r",
+							"pm.expect(jsonData.family.pets.dog.name).to.deep.include(\"Luky\")})\r",
 							"\r",
-							"pm.test(\"Check parametr Dog.age.4 \"), function () {\r",
-							"pm.expect(jsonData.family.pets.dog.age).to.haveOwnProperty('4')}\r",
-							"\r",
-							"\r",
-							"\r",
-							"\r",
+							"pm.test(\"Check parametr Dog.age.4 \", function () {\r",
+							"pm.expect(jsonData.family.pets.dog.age).to.eql(+'4')})\r",
 							""
 						],
 						"type": "text/javascript"
@@ -216,7 +236,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://162.55.220.72:5005/object_info_3?name=Vadim&age=41&salary=1000",
+					"raw": "http://162.55.220.72:5005/object_info_3?name=Alex&age=41&salary=1000",
 					"protocol": "http",
 					"host": [
 						"162",
@@ -231,7 +251,7 @@
 					"query": [
 						{
 							"key": "name",
-							"value": "Vadim"
+							"value": "Alex"
 						},
 						{
 							"key": "age",
